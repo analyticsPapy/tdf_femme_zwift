@@ -121,5 +121,8 @@ with tabs[3]:
     if historique_pond:
         df_hist = pd.DataFrame(historique_pond).T
         st.dataframe(df_hist.style.format("{:.2f}"))
+
+        # Graphe d'évolution des pondérations
+        st.line_chart(df_hist)
     else:
         st.info("Aucune donnée enregistrée encore.")
