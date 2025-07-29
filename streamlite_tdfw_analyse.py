@@ -20,11 +20,15 @@ labels = ['Sprint', 'Vallonnée', 'Montagne', 'Forme 2025']
 
 # Fichier mémoire pondérations
 memory_file = "poids_historique.json"
+historique_pond = {}
 if os.path.exists(memory_file):
-    with open(memory_file, 'r') as f:
-        historique_pond = json.load(f)
-else:
-    historique_pond = {}
+    try:
+        with open(memory_file, 'r') as f:
+            contenu = f.read().strip()
+            if contenu:
+                historique_pond = json.loads(contenu)
+    except json.JSONDecodeError:
+        historique_pond = {}
 
 # Prédiction scores par étape (initial)
 etapes = historique_pond if historique_pond else {
