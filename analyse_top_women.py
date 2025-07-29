@@ -1,6 +1,8 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import ace_tools as tools
+from math import pi
 
 # Création d'une base simplifiée des coureuses avec notes sur différents types d'étapes (0 à 10)
 # Hypothétique, basé sur performances passées et style
@@ -35,7 +37,7 @@ df_sorted = df.sort_values(by='Score_Etape4', ascending=False)
 # Calcul indice de confiance = std dev normalisée inversée
 confidence_index = 1 - (df['Score_Etape4'].std() / df['Score_Etape4'].mean())
 
-import ace_tools as tools; tools.display_dataframe_to_user(name="Prévision Étape 4 - Score par coureuse", dataframe=df_sorted)
+ tools.display_dataframe_to_user(name="Prévision Étape 4 - Score par coureuse", dataframe=df_sorted)
 
 confidence_index
 
@@ -80,8 +82,6 @@ results_summary = pd.DataFrame({
 })
 
 tools.display_dataframe_to_user(name="Indice de confiance par étape", dataframe=results_summary)
-
-from math import pi
 
 # Sélection des colonnes pour radar plot
 radar_data = df[['Coureuse', 'Sprint', 'Vallonnée', 'Montagne', 'Forme_2025']]
