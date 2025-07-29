@@ -88,6 +88,12 @@ with tabs[1]:
 # Onglet Saisie résultats journaliers
 with tabs[2]:
     st.subheader("Entrer les résultats journaliers")
+
+    password = st.text_input("Mot de passe requis :", type="password")
+    if password != st.secrets["admin_password"]:
+        st.warning("Accès restreint – veuillez entrer un mot de passe valide.")
+        st.stop()
+
     etape_sel = st.selectbox("Choisir une étape :", list(etapes.keys()))
     classement = {}
     for rider in coureuses.keys():
